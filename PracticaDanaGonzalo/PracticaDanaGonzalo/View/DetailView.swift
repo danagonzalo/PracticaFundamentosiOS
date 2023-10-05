@@ -41,7 +41,7 @@ class DetailView: UIViewController {
                     self?.favoriteButton.image = UIImage(systemName: self!.selectedimage)
                     
                     // Borramos los heroes a los que acabamos de marcar como favoritos para poder actualizar la lista
-                    for (key, value) in Constants.itemsList where value == true {
+                    for (key, value) in Constants.itemsList where value == Hero.heroesIdentifier {
                         Constants.itemsList.removeValue(forKey: key)
                     }
                     
@@ -55,12 +55,12 @@ class DetailView: UIViewController {
                 
                             for hero in heroes {
                                 // Añadimos un héroe a la lista Constants.itemsList
-                                Constants.itemsList.updateValue(true, forKey: hero)
+                                Constants.itemsList.updateValue(Hero.heroesIdentifier, forKey: hero)
                             }
                             
                             // Notificamos a TableViewController de que puede actualizar la tableView
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: Array(Constants.itemsList.filter {
-                                return $0.value == true
+                                return $0.value == Hero.heroesIdentifier
                             }.keys))
 
                             
@@ -79,7 +79,7 @@ class DetailView: UIViewController {
 
     // Abre un TableViewController con la lista de transformaciones de un hero
     @IBAction func showTransformations(_ sender: Any) {
-        let tableViewController = TableViewController(title: Constants.transformationsIdentifier, heroSelected: item as! Hero)
+        let tableViewController = TableViewController(title: Transformation.transformationsIdentifier, heroSelected: item as! Hero)
         navigationController?.pushViewController(tableViewController, animated: true)
     }
     
@@ -93,7 +93,7 @@ class DetailView: UIViewController {
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError(Constants.errorInitCoderNotImplemented)
+        fatalError("init(coder:) has not been implemented")
     }
     
     
@@ -111,7 +111,7 @@ class DetailView: UIViewController {
 
             // Número de transformaciones que tiene el héroe
             let numberOfTransformations = Constants.itemsList.filter{
-                let isTransformation = $0.value == false
+                let isTransformation = $0.value == Transformation.transformationsIdentifier
                 let heroSelectedInList = ($0.key as? Transformation)?.hero?.id == item?.id
                 
                 return isTransformation && heroSelectedInList

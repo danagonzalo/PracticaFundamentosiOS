@@ -23,7 +23,7 @@ extension UIImageView {
             }
             
             guard let data, let image = UIImage(data: data) else {
-                result = .failure(NSError(domain: Constants.errorNoImage, code: -1))
+                result = .failure(NSError(domain: "No image found", code: -1))
                 return
             }
             

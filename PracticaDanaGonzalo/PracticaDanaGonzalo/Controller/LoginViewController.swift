@@ -4,18 +4,18 @@ import UIKit
 class LoginViewController: UIViewController {
     
     // MARK: - Outlets
-    @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var userTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var waitingLabel: UILabel!
-    
+   // @IBOutlet weak var stackView: UIStackView!
+//    @IBOutlet weak var userTextField: UITextField!
+//    @IBOutlet weak var passwordTextField: UITextField!
+//    @IBOutlet weak var waitingLabel: UILabel!
+//
     
     // MARK: - Continuar
-    @IBAction func loginButtonTapped(_ sender: Any) {
-        
+    @IBAction func login(_ sender: Any) {
         // Intentamos conectarnos con nuestras credenciales
 
-        Constants.connection.login(user: userTextField.text ?? "", password: passwordTextField.text ?? "") { [weak self] result in
+        Constants.connection.login(user: "damdgonzalo@gmail.com", password: "123456") { [weak self] result in
+//        Constants.connection.login(user: userTextField.text ?? "", password: passwordTextField.text ?? "") { [weak self] result in
             switch result {
                 
             // El usuario y la contraseña son correctos
@@ -26,8 +26,8 @@ class LoginViewController: UIViewController {
                 
                 // Mostrando mensaje "Cargando datos..."
                 DispatchQueue.main.async { [weak self] in
-                    self?.stackView.isHidden = true
-                    self?.waitingLabel.isHidden = false
+//                    self?.stackView.isHidden = true
+//                    self?.waitingLabel.isHidden = false
                 }
             
             case let .failure(error):
@@ -37,11 +37,12 @@ class LoginViewController: UIViewController {
         }
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        waitingLabel.isHidden = true
-        stackView.isHidden = false
+//        waitingLabel.isHidden = true
+//        stackView.isHidden = false
     }
     
 
@@ -60,7 +61,7 @@ class LoginViewController: UIViewController {
                 for hero in heroes {
                     // Añadimos un héroe a la lista Constants.itemsList
                     print(hero.name)
-                    Constants.itemsList.updateValue(true, forKey: hero)
+                    Constants.itemsList.updateValue(Hero.heroesIdentifier, forKey: hero)
                     
                     // Buscamos las transformaciones para el héroe
                     self?.loadTransformations(for: hero)
@@ -68,7 +69,7 @@ class LoginViewController: UIViewController {
                 
                 // Pasamos a la lista de heroes
                 DispatchQueue.main.async { [weak self] in
-                    let tableViewController = TableViewController(title: Constants.heroesIdentifier)
+                    let tableViewController = TableViewController(title: Hero.heroesIdentifier)
                     tableViewController.view.isHidden = false
                 
                 // MARK: - Por algún motivo, setViewControllers NO funciona...
@@ -92,7 +93,7 @@ class LoginViewController: UIViewController {
                 for transformation in transformations {
                     print("---- \(transformation.name)")
                     // Añadimos cada transformación a la lista Constants.itemsList
-                    Constants.itemsList.updateValue(false, forKey: transformation)
+                    Constants.itemsList.updateValue(Transformation.transformationsIdentifier, forKey: transformation)
                 }
                 
             case let .failure(error):

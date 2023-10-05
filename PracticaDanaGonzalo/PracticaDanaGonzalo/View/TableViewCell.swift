@@ -6,7 +6,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var imageViewCell: UIImageView!
     @IBOutlet weak var cellLabel: UILabel!
     
-    static let identifier = Constants.tableViewCelldentifier
+    static let identifier = "TableViewCell"
     var cellBackground = UIImageView()
         
     func configure(with representable: any TableViewRepresentable) {
@@ -18,7 +18,7 @@ class TableViewCell: UITableViewCell {
         
         self.backgroundView = UIView()
         self.backgroundView?.addSubview(cellBackground)
-        Constants.addShadow(to: self.backgroundView!)
+        addShadow(to: self.backgroundView!)
 
     }
     
@@ -43,8 +43,8 @@ class TableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: true)
         if (selected) {
-            Constants.addBlurEffect(to: cellBackground, style: .systemThinMaterialDark)
-            Constants.addBlurEffect(to: imageViewCell, style: .systemThinMaterialDark)
+            addBlurEffect(to: cellBackground, style: .systemThinMaterialDark)
+            addBlurEffect(to: imageViewCell, style: .systemThinMaterialDark)
         }
     }
     
@@ -57,6 +57,21 @@ class TableViewCell: UITableViewCell {
             frame.size.height -= 2 * 5
             super.frame = frame
         }
+    }
+    
+    private func addShadow(to view: UIView) {
+        view.layer.cornerRadius = 10
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width: 5.0, height : 5.0)
+        view.layer.shadowOpacity = 0.4
+        view.layer.shadowRadius = 5
+    }
+    
+    private func addBlurEffect(to imageView: UIImageView, style: UIBlurEffect.Style) {
+        let blur = UIBlurEffect(style: style)
+        let blurEffect = UIVisualEffectView(effect: blur)
+        blurEffect.frame = imageView.bounds
+        imageView.addSubview(blurEffect)
     }
 }
 

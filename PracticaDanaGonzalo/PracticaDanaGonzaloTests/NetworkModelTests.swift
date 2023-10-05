@@ -29,9 +29,9 @@ final class NetworkModelTests: XCTestCase {
             let loginString = String(format: "%@:%@", someUser, somePassword)
             let loginData = loginString.data(using: .utf8)!
             
-            XCTAssertEqual(request.httpMethod, Constants.httpMethod)
+            XCTAssertEqual(request.httpMethod, "POST")
             XCTAssertEqual(
-                request.value(forHTTPHeaderField: Constants.httpHeaderField),
+                request.value(forHTTPHeaderField: "Authorization"),
                 "Bearer " + LocalDataModel.getToken()!)
             
             let response = try XCTUnwrap(

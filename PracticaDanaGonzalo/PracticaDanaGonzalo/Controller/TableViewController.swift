@@ -29,7 +29,7 @@ class TableViewController: UIViewController {
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError(Constants.errorInitCoderNotImplemented)
+        fatalError("init(coder:) has not been implemented")
     }
     
 
@@ -53,7 +53,7 @@ class TableViewController: UIViewController {
         tableView.register(UINib(nibName: TableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TableViewCell.identifier)
         
         // Si queremos mostrar la lista de heroes (donde value = true)
-        if title == Constants.heroesIdentifier {
+        if title == Hero.heroesIdentifier {
             
             // Activamos el botón para cerrar sesión
             let logOutButton = UIBarButtonItem(
@@ -67,7 +67,7 @@ class TableViewController: UIViewController {
             navigationItem.leftBarButtonItem = logOutButton
 
             // Cargamos la lista de la tableView solo con heroes
-            itemsList = Array<AnyHashable>(Constants.itemsList.filter({$0.value == true}).keys)
+            itemsList = Array<AnyHashable>(Constants.itemsList.filter({$0.value == Hero.heroesIdentifier}).keys)
 
             // Ordenamos los heroes alfabeticamente
             itemsList.sort(by: {
@@ -76,11 +76,11 @@ class TableViewController: UIViewController {
         }
         
         // En cambio, si queremos ver la listqa de transformaciones de un hero...
-        else if title == Constants.transformationsIdentifier {
+        else if title == Transformation.transformationsIdentifier {
             
             // Buscamos solo las trqwansformaciones, es decir, donde value = false
             itemsList = Array<AnyHashable>(Constants.itemsList.filter{
-                let isTransformation = $0.value == false
+                let isTransformation = $0.value == Transformation.transformationsIdentifier
                 let heroSelectedInList = ($0.key as? Transformation)?.hero?.id == heroSelected?.id
                 
                 return isTransformation && heroSelectedInList

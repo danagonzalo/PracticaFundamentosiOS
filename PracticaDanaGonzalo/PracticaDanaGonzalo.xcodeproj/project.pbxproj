@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		99790DD82AD0327B00AB1577 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99790DD72AD0327B00AB1577 /* LaunchScreen.xib */; };
 		998A38502AC84DA3003AA62E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A384F2AC84DA3003AA62E /* AppDelegate.swift */; };
 		998A38522AC84DA3003AA62E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A38512AC84DA3003AA62E /* SceneDelegate.swift */; };
 		998A38592AC84DA4003AA62E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 998A38582AC84DA4003AA62E /* Assets.xcassets */; };
@@ -18,9 +19,8 @@
 		998A38852AC84DF9003AA62E /* Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A38842AC84DF9003AA62E /* Transformation.swift */; };
 		998A38872AC84E0E003AA62E /* TableViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A38862AC84E0E003AA62E /* TableViewRepresentable.swift */; };
 		998A38892AC84E2D003AA62E /* UIImage+Remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A38882AC84E2D003AA62E /* UIImage+Remote.swift */; };
-		998A388B2AC84E47003AA62E /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A388A2AC84E47003AA62E /* AppConstants.swift */; };
+		998A388B2AC84E47003AA62E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A388A2AC84E47003AA62E /* Constants.swift */; };
 		998A388D2AC84E5B003AA62E /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A388C2AC84E5B003AA62E /* NetworkModel.swift */; };
-		998A38902AC84EA2003AA62E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A388F2AC84EA2003AA62E /* ViewController.swift */; };
 		998A38922AC84EBF003AA62E /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A38912AC84EBF003AA62E /* TableViewController.swift */; };
 		998A38942AC84ED4003AA62E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A38932AC84ED4003AA62E /* LoginViewController.swift */; };
 		998A38972AC84EF9003AA62E /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A38962AC84EF9003AA62E /* DetailView.swift */; };
@@ -50,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		99790DD72AD0327B00AB1577 /* LaunchScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		998A384C2AC84DA3003AA62E /* PracticaDanaGonzalo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PracticaDanaGonzalo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		998A384F2AC84DA3003AA62E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		998A38512AC84DA3003AA62E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,9 +66,8 @@
 		998A38842AC84DF9003AA62E /* Transformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformation.swift; sourceTree = "<group>"; };
 		998A38862AC84E0E003AA62E /* TableViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewRepresentable.swift; sourceTree = "<group>"; };
 		998A38882AC84E2D003AA62E /* UIImage+Remote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Remote.swift"; sourceTree = "<group>"; };
-		998A388A2AC84E47003AA62E /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		998A388A2AC84E47003AA62E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		998A388C2AC84E5B003AA62E /* NetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModel.swift; sourceTree = "<group>"; };
-		998A388F2AC84EA2003AA62E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		998A38912AC84EBF003AA62E /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		998A38932AC84ED4003AA62E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		998A38962AC84EF9003AA62E /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
@@ -104,6 +104,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		99790DD12AD02C0E00AB1577 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				998A389C2AC84F5C003AA62E /* LoginViewController.xib */,
+				998A38932AC84ED4003AA62E /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		99790DD22AD02C1D00AB1577 /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				998A38962AC84EF9003AA62E /* DetailView.swift */,
+				998A38982AC84F14003AA62E /* DetailView.xib */,
+			);
+			path = DetailView;
+			sourceTree = "<group>";
+		};
+		99790DD32AD02C2D00AB1577 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				99790DD42AD02C5100AB1577 /* Cell */,
+				998A38912AC84EBF003AA62E /* TableViewController.swift */,
+				998A389E2AC84F7A003AA62E /* TableViewController.xib */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		99790DD42AD02C5100AB1577 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				998A38A22AC86755003AA62E /* TableViewCell.xib */,
+				998A389A2AC84F45003AA62E /* TableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		998A38432AC84DA3003AA62E = {
 			isa = PBXGroup;
 			children = (
@@ -127,13 +164,15 @@
 		998A384E2AC84DA3003AA62E /* PracticaDanaGonzalo */ = {
 			isa = PBXGroup;
 			children = (
-				998A38952AC84EE3003AA62E /* View */,
-				998A388E2AC84E94003AA62E /* Controller */,
+				99790DD32AD02C2D00AB1577 /* TableView */,
+				99790DD22AD02C1D00AB1577 /* DetailView */,
+				99790DD12AD02C0E00AB1577 /* Login */,
 				998A387F2AC84DB3003AA62E /* Model */,
 				998A384F2AC84DA3003AA62E /* AppDelegate.swift */,
 				998A38512AC84DA3003AA62E /* SceneDelegate.swift */,
 				998A38582AC84DA4003AA62E /* Assets.xcassets */,
 				998A385D2AC84DA4003AA62E /* Info.plist */,
+				99790DD72AD0327B00AB1577 /* LaunchScreen.xib */,
 			);
 			path = PracticaDanaGonzalo;
 			sourceTree = "<group>";
@@ -164,33 +203,10 @@
 				998A38842AC84DF9003AA62E /* Transformation.swift */,
 				998A38862AC84E0E003AA62E /* TableViewRepresentable.swift */,
 				998A38882AC84E2D003AA62E /* UIImage+Remote.swift */,
-				998A388A2AC84E47003AA62E /* AppConstants.swift */,
+				998A388A2AC84E47003AA62E /* Constants.swift */,
 				998A388C2AC84E5B003AA62E /* NetworkModel.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		998A388E2AC84E94003AA62E /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				998A388F2AC84EA2003AA62E /* ViewController.swift */,
-				998A38912AC84EBF003AA62E /* TableViewController.swift */,
-				998A38932AC84ED4003AA62E /* LoginViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		998A38952AC84EE3003AA62E /* View */ = {
-			isa = PBXGroup;
-			children = (
-				998A38962AC84EF9003AA62E /* DetailView.swift */,
-				998A38982AC84F14003AA62E /* DetailView.xib */,
-				998A389A2AC84F45003AA62E /* TableViewCell.swift */,
-				998A38A22AC86755003AA62E /* TableViewCell.xib */,
-				998A389C2AC84F5C003AA62E /* LoginViewController.xib */,
-				998A389E2AC84F7A003AA62E /* TableViewController.xib */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,7 +289,7 @@
 				};
 			};
 			buildConfigurationList = 998A38472AC84DA3003AA62E /* Build configuration list for PBXProject "PracticaDanaGonzalo" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -301,6 +317,7 @@
 				998A38A32AC86755003AA62E /* TableViewCell.xib in Resources */,
 				998A38992AC84F14003AA62E /* DetailView.xib in Resources */,
 				998A389F2AC84F7A003AA62E /* TableViewController.xib in Resources */,
+				99790DD82AD0327B00AB1577 /* LaunchScreen.xib in Resources */,
 				998A38592AC84DA4003AA62E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -328,9 +345,8 @@
 			files = (
 				998A38942AC84ED4003AA62E /* LoginViewController.swift in Sources */,
 				998A38832AC84DDD003AA62E /* Hero.swift in Sources */,
-				998A388B2AC84E47003AA62E /* AppConstants.swift in Sources */,
+				998A388B2AC84E47003AA62E /* Constants.swift in Sources */,
 				998A38852AC84DF9003AA62E /* Transformation.swift in Sources */,
-				998A38902AC84EA2003AA62E /* ViewController.swift in Sources */,
 				998A389B2AC84F45003AA62E /* TableViewCell.swift in Sources */,
 				998A38812AC84DC6003AA62E /* LocalDataModel.swift in Sources */,
 				998A38872AC84E0E003AA62E /* TableViewRepresentable.swift in Sources */,
@@ -502,9 +518,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PracticaDanaGonzalo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.xib;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -512,9 +529,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dgonzalo.PracticaDanaGonzalo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -529,9 +549,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PracticaDanaGonzalo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.xib;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -539,9 +560,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dgonzalo.PracticaDanaGonzalo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -554,7 +578,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5564KY6MVJ;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dgonzalo.PracticaDanaGonzaloTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -574,7 +598,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5564KY6MVJ;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dgonzalo.PracticaDanaGonzaloTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -593,6 +617,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5564KY6MVJ;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dgonzalo.PracticaDanaGonzaloUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -611,6 +636,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5564KY6MVJ;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dgonzalo.PracticaDanaGonzaloUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

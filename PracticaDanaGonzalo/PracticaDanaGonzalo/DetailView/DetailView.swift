@@ -146,7 +146,8 @@ class DetailView: UIViewController {
     }
     
     
-    // MARK: Otras funciones
+    // MARK: - Otras funciones
+    
     // Añade un degradado a una vista con los colores deseados
     private func addGradient(to view: UIView, firstColor: UIColor, secondColor: UIColor) {
         

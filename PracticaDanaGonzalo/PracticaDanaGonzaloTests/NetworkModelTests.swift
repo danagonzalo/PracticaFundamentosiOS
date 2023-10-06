@@ -20,19 +20,18 @@ final class NetworkModelTests: XCTestCase {
     
     // MARK: Test
     func testToggleFavorite() {
-        let someUser = "damdgonzalo@gmail.com"
-        let somePassword = "123456"
-        let someHero = Hero(id: "D13A40E5-4418-4223-9CE6-D2F9A28EBE94", name: "", description: "Sobran las presentaciones cuando se habla de Goku. El Saiyan fue enviado al planeta Tierra, pero hay dos versiones sobre el origen del personaje. Según una publicación especial, cuando Goku nació midieron su poder y apenas llegaba a dos unidades, siendo el Saiyan más débil. Aun así se pensaba que le bastaría para conquistar el planeta. Sin embargo, la versión más popular es que Freezer era una amenaza para su planeta natal y antes de que fuera destruido, se envió a Goku en una incubadora para salvarle.", photo: "https://cdn.alfabetajuega.com/alfabetajuega/2020/12/goku1.jpg?width=300", favorite: false)
+        let token = "eyJ0eXAiOiJKV1QiLCJraWQiOiJwcml2YXRlIiwiYWxnIjoiSFMyNTYifQ.eyJleHBpcmF0aW9uIjo2NDA5MjIxMTIwMCwiaWRlbnRpZnkiOiIzNkUyQUE0RS00RTlDLTRERTItODYxQi1BNzY5OTQ1NTdCM0MiLCJlbWFpbCI6ImRhbWRnb256YWxvQGdtYWlsLmNvbSJ9.2n-L50zWlFn21rist4PT58i9Jsv5yTyl1JpEsUzO3YU"
+        
+        let someHero = Hero(id: "D13A40E5-4418-4223-9CE6-D2F9A28EBE94",
+                            name: "Goku",
+                            description: "Sobran las presentaciones cuando se habla de Goku. El Saiyan fue enviado al planeta Tierra, pero hay dos versiones sobre el origen del personaje. Según una publicación especial, cuando Goku nació midieron su poder y apenas llegaba a dos unidades, siendo el Saiyan más débil. Aun así se pensaba que le bastaría para conquistar el planeta. Sin embargo, la versión más popular es que Freezer era una amenaza para su planeta natal y antes de que fuera destruido, se envió a Goku en una incubadora para salvarle.",
+                            photo: "https://cdn.alfabetajuega.com/alfabetajuega/2020/12/goku1.jpg?width=300",
+                            favorite: false)
         
         
         MockURLProtocol.requestHandler = { request in
-            let loginString = String(format: "%@:%@", someUser, somePassword)
-            let loginData = loginString.data(using: .utf8)!
-            
             XCTAssertEqual(request.httpMethod, "POST")
-            XCTAssertEqual(
-                request.value(forHTTPHeaderField: "Authorization"),
-                "Bearer " + LocalDataModel.getToken()!)
+            XCTAssertEqual(request.value(forHTTPHeaderField: "Authorization"), "Bearer \(token)")
             
             let response = try XCTUnwrap(
                 HTTPURLResponse(

@@ -2,26 +2,30 @@ import UIKit
 
 class TableViewCell: UITableViewCell {
     
+    // MARK: - Outlets y variables
     
     @IBOutlet weak var imageViewCell: UIImageView!
     @IBOutlet weak var cellLabel: UILabel!
     
     static let identifier = "TableViewCell"
     var cellBackground = UIImageView()
-        
+     
+    
+    // MARK: - Configuración Cell
+    
     func configure(with representable: any TableViewRepresentable) {
+                
         cellLabel.text = representable.name
         
         imageViewCell.setImage(for: URL(string:(representable.photo))!)
         
         customizeCell(for: representable)
         
-        self.backgroundView = UIView()
-        self.backgroundView?.addSubview(cellBackground)
-        addShadow(to: self.backgroundView!)
 
     }
     
+    
+    // MARK: - Customize cell
     
     // Añade una forma circular y sombras a la celda
     func customizeCell(for representable: TableViewRepresentable) {
@@ -36,6 +40,11 @@ class TableViewCell: UITableViewCell {
         cellBackground.layer.cornerRadius = 15
         cellBackground.clipsToBounds = true
         cellBackground.contentMode = .scaleAspectFill
+        addBlurEffect(to: cellBackground, style: .systemUltraThinMaterial)
+        
+        backgroundView = UIView()
+        backgroundView?.addSubview(cellBackground)
+        addShadow(to: backgroundView!)
     }
     
     
@@ -44,7 +53,6 @@ class TableViewCell: UITableViewCell {
         super.setSelected(selected, animated: true)
         if (selected) {
             addBlurEffect(to: cellBackground, style: .systemThinMaterialDark)
-            addBlurEffect(to: imageViewCell, style: .systemThinMaterialDark)
         }
     }
     
@@ -59,6 +67,7 @@ class TableViewCell: UITableViewCell {
         }
     }
     
+    // Añade una sombra debajo de una UIView
     private func addShadow(to view: UIView) {
         view.layer.cornerRadius = 10
         view.layer.shadowColor = UIColor.black.cgColor
@@ -67,6 +76,7 @@ class TableViewCell: UITableViewCell {
         view.layer.shadowRadius = 5
     }
     
+    // Difumina una UIImageView
     private func addBlurEffect(to imageView: UIImageView, style: UIBlurEffect.Style) {
         let blur = UIBlurEffect(style: style)
         let blurEffect = UIVisualEffectView(effect: blur)

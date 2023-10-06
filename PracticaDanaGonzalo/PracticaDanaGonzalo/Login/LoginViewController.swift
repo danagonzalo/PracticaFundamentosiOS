@@ -14,8 +14,8 @@ class LoginViewController: UIViewController {
     @IBAction func login(_ sender: Any) {
         // Intentamos conectarnos con nuestras credenciales
 
-//        Constants.connection.login(user: "damdgonzalo@gmail.com", password: "123456") { [weak self] result in
-        Constants.connection.login(user: userTextField.text ?? "", password: passwordTextField.text ?? "") { [weak self] result in
+        Constants.connection.login(user: "damdgonzalo@gmail.com", password: "123456") { [weak self] result in
+//        Constants.connection.login(user: userTextField.text ?? "", password: passwordTextField.text ?? "") { [weak self] result in
             switch result {
                 
             // El usuario y la contraseña son correctos

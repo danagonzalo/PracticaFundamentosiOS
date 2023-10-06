@@ -70,7 +70,7 @@
                                 <constraint firstAttribute="height" constant="44" id="9AM-6T-IL2"/>
                             </constraints>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                            <buttonConfiguration key="configuration" style="filled" title="Continuar"/>
                             <connections>
                                 <action selector="login:" destination="-1" eventType="touchUpInside" id="MVm-e1-0sE"/>
                             </connections>

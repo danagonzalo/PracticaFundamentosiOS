@@ -4,18 +4,18 @@ import UIKit
 class LoginViewController: UIViewController {
     
     // MARK: - Outlets
-   // @IBOutlet weak var stackView: UIStackView!
-//    @IBOutlet weak var userTextField: UITextField!
-//    @IBOutlet weak var passwordTextField: UITextField!
-//    @IBOutlet weak var waitingLabel: UILabel!
-//
+    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var userTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var waitingLabel: UILabel!
+
     
     // MARK: - Continuar
     @IBAction func login(_ sender: Any) {
         // Intentamos conectarnos con nuestras credenciales
 
-        Constants.connection.login(user: "damdgonzalo@gmail.com", password: "123456") { [weak self] result in
-//        Constants.connection.login(user: userTextField.text ?? "", password: passwordTextField.text ?? "") { [weak self] result in
+//        Constants.connection.login(user: "damdgonzalo@gmail.com", password: "123456") { [weak self] result in
+        Constants.connection.login(user: userTextField.text ?? "", password: passwordTextField.text ?? "") { [weak self] result in
             switch result {
                 
             // El usuario y la contraseña son correctos
@@ -26,8 +26,9 @@ class LoginViewController: UIViewController {
                 
                 // Mostrando mensaje "Cargando datos..."
                 DispatchQueue.main.async { [weak self] in
-//                    self?.stackView.isHidden = true
-//                    self?.waitingLabel.isHidden = false
+                    self?.view.endEditing(true)
+                    self?.stackView.isHidden = true
+                    self?.waitingLabel.isHidden = false
                 }
             
             case let .failure(error):
@@ -41,8 +42,8 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        waitingLabel.isHidden = true
-//        stackView.isHidden = false
+        waitingLabel.isHidden = true
+        stackView.isHidden = false
     }
     
 

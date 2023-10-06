@@ -45,13 +45,10 @@ final class NetworkModel {
         self.session = session
     }
     
-    // https://dragonball.keepcoding.education/api/auth/login
     
-    func login(
-        user: String,
-        password: String,
-        completion: @escaping (Result<String, NetworkError>) -> Void
-    ) {
+    // MARK: - Login
+    
+    func login(user: String, password: String, completion: @escaping (Result<String, NetworkError>) -> Void) {
         var components = baseComponents
         components.path = "/api/auth/login"
         
@@ -60,7 +57,6 @@ final class NetworkModel {
             return
         }
         
-        // user:password
         let loginString = String(format: "%@:%@", user, password)
         guard let loginData = loginString.data(using: .utf8) else {
             completion(.failure(.decodingFailed))
@@ -102,9 +98,10 @@ final class NetworkModel {
         task.resume()
     }
     
-    func getHeroes(
-        completion: @escaping (Result<[Hero], NetworkError>) -> Void
-    ) {
+    
+    // MARK: - Get heroes
+    
+    func getHeroes(completion: @escaping (Result<[Hero], NetworkError>) -> Void) {
         var components = baseComponents
         components.path = "/api/heros/all"
         
@@ -132,10 +129,10 @@ final class NetworkModel {
         )
     }
     
-    func getTransformations(
-        for hero: Hero,
-        completion: @escaping (Result<[Transformation], NetworkError>) -> Void
-    ) {
+
+    // MARK: - Get transformations
+    
+    func getTransformations(for hero: Hero, completion: @escaping (Result<[Transformation], NetworkError>) -> Void) {
         var components = baseComponents
         components.path = "/api/heros/tranformations"
         
@@ -148,15 +145,7 @@ final class NetworkModel {
             completion(.failure(.noToken))
             return
         }
-        
-//        let body = GetTransformationBody(id: hero.id)
-//
-//        guard let encodedBody = try? JSONEncoder().encode(body) else {
-//            completion(.failure(.encodingFailed))
-//            return
-//        }
-//
-//        let bodyString = String(data: encodedBody, encoding: .utf8)
+    
         
         var urlComponents = URLComponents()
         urlComponents.queryItems = [URLQueryItem(name: "id", value: hero.id)]
@@ -172,7 +161,9 @@ final class NetworkModel {
         )
     }
     
-    // MARK: Marca o desmarca un hero como favorito
+    
+    // MARK: - Marca o desmarca un hero como favorito
+    
     func toggleFavorite(for hero: Hero, completion: @escaping (Result<Void, NetworkError>) -> Void) {
         
         var components = baseComponents
@@ -219,12 +210,12 @@ final class NetworkModel {
         
         task.resume()
     }
+
     
-    func createTask<T: Decodable>(
-        for request: URLRequest,
-        using type: T.Type,
-        completion: @escaping (Result<T, NetworkError>) -> Void
-    ) {
+    
+    // MARK: - Create task
+    
+    func createTask<T: Decodable>(for request: URLRequest, using type: T.Type, completion: @escaping (Result<T, NetworkError>) -> Void) {
         let task = session.dataTask(with: request) { data, response, error in
             let result: Result<T, NetworkError>
             
@@ -252,6 +243,4 @@ final class NetworkModel {
         
         task.resume()
     }
-    
-
 }

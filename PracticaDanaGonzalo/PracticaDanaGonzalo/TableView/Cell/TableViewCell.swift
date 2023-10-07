@@ -8,6 +8,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var cellLabel: UILabel!
     
     static let identifier = "TableViewCell"
+    
     var cellBackground = UIImageView()
      
     

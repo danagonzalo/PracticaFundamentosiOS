@@ -8,6 +8,6 @@ struct Constants {
     
     
     // MARK: - Lista con heroes y transformaciones
-    static var itemsList = [AnyHashable : String]()
+    static var itemsList = [TableViewRepresentable]()
 }
 

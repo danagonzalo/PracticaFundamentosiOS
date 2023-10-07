@@ -41,9 +41,7 @@ class DetailView: UIViewController {
                     self?.favoriteButton.image = UIImage(systemName: self!.selectedimage)
                     
                     // Borramos los heroes a los que acabamos de marcar como favoritos para poder actualizar la lista
-                    for (key, value) in Constants.itemsList where value == Hero.heroesIdentifier {
-                        Constants.itemsList.removeValue(forKey: key)
-                    }
+                    Constants.itemsList.removeAll()
                     
                     
                     // Recargamos la lista de heroes, esta vez actualizada
@@ -55,13 +53,11 @@ class DetailView: UIViewController {
                 
                             for hero in heroes {
                                 // Añadimos un héroe a la lista Constants.itemsList
-                                Constants.itemsList.updateValue(Hero.heroesIdentifier, forKey: hero)
+                                Constants.itemsList.append(hero)
                             }
                             
                             // Notificamos a TableViewController de que puede actualizar la tableView
-                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: Array(Constants.itemsList.filter {
-                                return $0.value == Hero.heroesIdentifier
-                            }.keys))
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: Constants.itemsList)
 
                             
                         case .failure(_):
@@ -110,11 +106,16 @@ class DetailView: UIViewController {
             favoriteButton.image = UIImage(systemName: selectedimage)
 
             // Número de transformaciones que tiene el héroe
-            let numberOfTransformations = Constants.itemsList.filter{
-                let isTransformation = $0.value == Transformation.transformationsIdentifier
-                let heroSelectedInList = ($0.key as? Transformation)?.hero?.id == item?.id
+            let numberOfTransformations = Constants.itemsList.filter {
+                let isTransformation = $0 is Transformation
+                print ("Es tranfor \($0 is Transformation)")
+                var heroSelected: Bool = false
+                if isTransformation {
+                    heroSelected = ($0 as! Transformation).hero?.id == item?.id
+                }
+
                 
-                return isTransformation && heroSelectedInList
+                return isTransformation && heroSelected
             }.count
             
             // Si no tiene ninguna transformación, escondemos el botón showTransformationButton

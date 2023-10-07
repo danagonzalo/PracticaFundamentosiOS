@@ -10,7 +10,7 @@ class TableViewController: UIViewController {
     
     
     // MARK: - Variables
-    private var itemsList: Array<AnyHashable> = []
+    private var itemsList = [TableViewRepresentable]()
     private var heroSelected: Hero?
 
     
@@ -43,14 +43,20 @@ class TableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(loadList),
+            name: NSNotification.Name(rawValue: "load"),
+            object: nil
+        )
 
         
         logOutLabel.isHidden = true
         
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UINib(nibName: TableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TableViewCell.identifier)
+        tableView.register(UINib(nibName: TableViewCell.identifier, bundle: nil), 
+                           forCellReuseIdentifier: TableViewCell.identifier)
         
         // Si queremos mostrar la lista de heroes (donde value = true)
         if title == Hero.heroesIdentifier {
@@ -67,7 +73,7 @@ class TableViewController: UIViewController {
             navigationItem.leftBarButtonItem = logOutButton
 
             // Cargamos la lista de la tableView solo con heroes
-            itemsList = Array<AnyHashable>(Constants.itemsList.filter({$0.value == Hero.heroesIdentifier}).keys)
+            itemsList = Constants.itemsList.filter({$0 is Hero})
 
             // Ordenamos los heroes alfabeticamente
             itemsList.sort(by: {
@@ -78,18 +84,20 @@ class TableViewController: UIViewController {
         // En cambio, si queremos ver la listqa de transformaciones de un hero...
         else if title == Transformation.transformationsIdentifier {
             
-            // Buscamos solo las trqwansformaciones, es decir, donde value = false
-            itemsList = Array<AnyHashable>(Constants.itemsList.filter{
-                let isTransformation = $0.value == Transformation.transformationsIdentifier
-                let heroSelectedInList = ($0.key as? Transformation)?.hero?.id == heroSelected?.id
-                
+            // Buscamos solo las transformaciones, es decir, donde value = false
+            itemsList = Constants.itemsList.filter {
+                let isTransformation = $0 is Transformation
+                var heroSelectedInList: Bool = false
+                if isTransformation {
+                    heroSelectedInList = ($0 as! Transformation).hero?.id == heroSelected?.id
+                }
                 return isTransformation && heroSelectedInList
-            }.keys)
+            }
             
             // Ordenamos las transformaciones por su número
             itemsList.sort(by: {
-                let item1 = Int(($0 as! Transformation).name.split(separator: ".")[0])
-                let item2 =  Int(($1 as! Transformation).name.split(separator: ".")[0])
+                let item1 = Int($0.name.split(separator: ".")[0])
+                let item2 =  Int($1.name.split(separator: ".")[0])
                 
                 return item1 ?? 0 < item2 ?? 0
             })
@@ -113,7 +121,7 @@ extension TableViewController: UITableViewDataSource {
         }
         
         let item = itemsList[indexPath.row]
-        cell.configure(with: item as! (any TableViewRepresentable))
+        cell.configure(with: item)
         
         return cell
     }
@@ -164,11 +172,11 @@ extension TableViewController {
     // Actualizar la lista de héroes
     @objc func loadList(notification: NSNotification){
         
-        itemsList = notification.object as! Array<AnyHashable>
+        itemsList = notification.object as! [TableViewRepresentable]
         
         //Ordenamos los heroes por nombre
         itemsList.sort(by: {
-            ($0 as! Hero).name < ($1 as! Hero).name
+            $0.name < $1.name
         })
         
         DispatchQueue.main.async { [weak self] in

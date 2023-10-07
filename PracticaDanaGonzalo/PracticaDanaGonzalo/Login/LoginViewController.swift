@@ -62,7 +62,7 @@ class LoginViewController: UIViewController {
                 for hero in heroes {
                     // Añadimos un héroe a la lista Constants.itemsList
                     print(hero.name)
-                    Constants.itemsList.updateValue(Hero.heroesIdentifier, forKey: hero)
+                    Constants.itemsList.append(hero)
                     
                     // Buscamos las transformaciones para el héroe
                     self?.loadTransformations(for: hero)
@@ -94,7 +94,7 @@ class LoginViewController: UIViewController {
                 for transformation in transformations {
                     print("---- \(transformation.name)")
                     // Añadimos cada transformación a la lista Constants.itemsList
-                    Constants.itemsList.updateValue(Transformation.transformationsIdentifier, forKey: transformation)
+                    Constants.itemsList.append(transformation)
                 }
                 
             case let .failure(error):

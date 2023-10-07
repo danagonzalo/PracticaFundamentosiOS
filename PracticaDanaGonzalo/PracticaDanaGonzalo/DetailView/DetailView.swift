@@ -41,7 +41,7 @@ class DetailView: UIViewController {
                     self?.favoriteButton.image = UIImage(systemName: self!.selectedimage)
                     
                     // Borramos los heroes a los que acabamos de marcar como favoritos para poder actualizar la lista
-                    Constants.itemsList.removeAll()
+                    Constants.itemsList = [TableViewRepresentable]()
                     
                     
                     // Recargamos la lista de heroes, esta vez actualizada
@@ -54,6 +54,7 @@ class DetailView: UIViewController {
                             for hero in heroes {
                                 // Añadimos un héroe a la lista Constants.itemsList
                                 Constants.itemsList.append(hero)
+                                Constants.loadTransformations(for: hero)
                             }
                             
                             // Notificamos a TableViewController de que puede actualizar la tableView
@@ -108,18 +109,18 @@ class DetailView: UIViewController {
             // Número de transformaciones que tiene el héroe
             let numberOfTransformations = Constants.itemsList.filter {
                 let isTransformation = $0 is Transformation
-                print ("Es tranfor \($0 is Transformation)")
                 var heroSelected: Bool = false
                 if isTransformation {
                     heroSelected = ($0 as! Transformation).hero?.id == item?.id
                 }
 
-                
-                return isTransformation && heroSelected
+                return heroSelected
             }.count
+        
             
             // Si no tiene ninguna transformación, escondemos el botón showTransformationButton
             buttonIsHidden = (numberOfTransformations == 0 ? true : false)
+            
             
             favoriteButton.isUserInteractionEnabled = true
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imagedTapped))

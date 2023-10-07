@@ -77,7 +77,7 @@ class TableViewController: UIViewController {
 
             // Ordenamos los heroes alfabeticamente
             itemsList.sort(by: {
-                ($0 as! Hero).name < ($1 as! Hero).name
+                $0.name < $1.name
             })
         }
         
@@ -132,7 +132,7 @@ extension TableViewController: UITableViewDataSource {
 extension TableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let detailViewController = DetailView(representable: itemsList[indexPath.row] as! (any TableViewRepresentable))
+        let detailViewController = DetailView(representable: itemsList[indexPath.row] )
         
         navigationController?.pushViewController(detailViewController, animated: true)
         
@@ -158,7 +158,9 @@ extension TableViewController {
             // Simulamos cerrar sesión...
             tableView.isHidden = true
             logOutLabel.isHidden = false
-            
+                        
+            Constants.itemsList = [TableViewRepresentable]()
+
             // Hacemos un delay de 0.5sec para simular que cerramos sesión
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 let navigationController = UINavigationController(rootViewController: LoginViewController())

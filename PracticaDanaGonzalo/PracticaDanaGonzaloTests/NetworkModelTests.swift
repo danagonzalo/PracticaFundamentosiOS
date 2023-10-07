@@ -43,7 +43,7 @@ final class NetworkModelTests: XCTestCase {
             )
             return (response)
         }
-        
+
         let expectation = expectation(description: "Success")
         
         sut.toggleFavorite(for: someHero){ result in

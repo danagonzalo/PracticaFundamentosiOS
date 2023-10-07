@@ -1,6 +1,6 @@
 import Foundation
 
-struct Transformation: Decodable, Hashable, TableViewRepresentable {
+struct Transformation: Decodable, TableViewRepresentable {
     static let transformationsIdentifier = "Transformations"
     let id: String
     let name: String
@@ -9,7 +9,7 @@ struct Transformation: Decodable, Hashable, TableViewRepresentable {
     let hero: TransformationHero?
 }
 
-struct TransformationHero: Decodable, Hashable {
+struct TransformationHero: Decodable {
     let id: String
 }
 

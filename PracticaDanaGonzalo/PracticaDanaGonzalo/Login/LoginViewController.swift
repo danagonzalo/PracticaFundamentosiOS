@@ -14,8 +14,7 @@ class LoginViewController: UIViewController {
     @IBAction func login(_ sender: Any) {
         // Intentamos conectarnos con nuestras credenciales
 
-        Constants.connection.login(user: "damdgonzalo@gmail.com", password: "123456") { [weak self] result in
-//        Constants.connection.login(user: userTextField.text ?? "", password: passwordTextField.text ?? "") { [weak self] result in
+        Constants.connection.login(user: userTextField.text ?? "", password: passwordTextField.text ?? "") { [weak self] result in
             switch result {
                 
             // El usuario y la contraseña son correctos
@@ -65,7 +64,7 @@ class LoginViewController: UIViewController {
                     Constants.itemsList.append(hero)
                     
                     // Buscamos las transformaciones para el héroe
-                    self?.loadTransformations(for: hero)
+                    Constants.loadTransformations(for: hero)
                 }
                 
                 // Pasamos a la lista de heroes
@@ -83,24 +82,5 @@ class LoginViewController: UIViewController {
         }
     }
     
-    // Importa todas las transformaciones de un héroe dado a la lista Constants.itemsList
-    private func loadTransformations(for hero: Hero) {
-        
-        Constants.connection.getTransformations(for: hero) { result in
-            switch result {
-                
-            case let .success(transformations): // Se ha conseguido importar la lista de héroes
-                
-                for transformation in transformations {
-                    print("---- \(transformation.name)")
-                    // Añadimos cada transformación a la lista Constants.itemsList
-                    Constants.itemsList.append(transformation)
-                }
-                
-            case let .failure(error):
-                print("ERROR3")
-                print(error.localizedDescription)
-            }
-        }
-    }
+
 }
